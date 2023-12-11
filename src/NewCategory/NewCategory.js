@@ -63,7 +63,7 @@ function NewCategory() {
     event.preventDefault();
     console.log(title, budget, color, expense);
 
-    axios.post('http://localhost:3000/addbudget',
+    axios.post('https://seashell-app-pjx64.ondigitalocean.app/addbudget',
       {
         title,
         budget,

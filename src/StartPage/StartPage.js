@@ -13,7 +13,7 @@ const StartPage = () => {
 
       <section className="side-by-side-sections">
         <div className="left-section">
-          <h1>Personal Budget App</h1>
+          <h1 data-testid="cypress-title">Personal Budget App</h1>
           <p>A personal-budget management app</p>
           <div className="button-container">
             {/* Use the Link component to navigate to the login page */}

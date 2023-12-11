@@ -3,6 +3,27 @@
   import axios from 'axios';
   import Chart from 'chart.js/auto';
 
+   export const calculateDifferenceForCategoryAndMonth = (categoryName, month, dataSource) => {
+    const categoryIndex = dataSource.labels.indexOf(categoryName);
+  
+    if (categoryIndex !== -1) {
+      const budget = dataSource.datasets[0].data[categoryIndex];
+      const expenses = dataSource.datasets[0].expense[categoryIndex];
+  
+      // Assuming dataSource.labels and dataSource.datasets[0].month are in lowercase
+      const matchingMonthIndex = dataSource.datasets[0].month.indexOf(month.toLowerCase());
+  
+      if (matchingMonthIndex !== -1 && categoryIndex !== -1 && matchingMonthIndex === categoryIndex) {
+        const difference = budget - expenses;
+        return difference;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
+  
   function Dashboard() {
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('jwt');
@@ -59,6 +80,7 @@
 
     const [selectedMonth1, setSelectedMonth1] = React.useState('');
     const [selectedMonth2, setSelectedMonth2] = React.useState('');
+
     const handleChange1 = (event) => {
       setSelectedMonth1(event.target.value);
     };
@@ -271,7 +293,7 @@
 
     const getBudget = () => {
       axios
-        .get(`http://localhost:3000/api/budget/${username}`, {
+        .get(`https://seashell-app-pjx64.ondigitalocean.app/api/budget/${username}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -302,7 +324,10 @@
         <section className="dash-head">
           <h1 className="dashboard-head">Welcome to <b>{username}'s </b>Dashboard</h1>
           <Link to="/newcategory" className="create-category">
-            Add new categories
+            Add/ Modify Categories
+          </Link>
+          <Link to="/deletecategory" className="create-category">
+            Delete Categories
           </Link>
           <Link to="/login" className="logout-link">
             Logout

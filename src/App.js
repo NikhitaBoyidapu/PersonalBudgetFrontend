@@ -16,14 +16,12 @@ import LoginPage from './LoginPage/LoginPage';
 import StartPage from './StartPage/StartPage';
 import SignupPage from './SignupPage/SignupPage';
 import NewCategory from './NewCategory/NewCategory';
+import DeleteCategory from './DeleteCategory/DeleteCategory';
 import { AuthProvider, useAuth } from './AuthProvider';
 
 // PrivateRoute component
 const PrivateRoute = ({ element, ...rest }) => {
   const { authenticated } = useAuth();
-
-  console.log('PrivateRoute - authenticated:', authenticated);
-
   if (authenticated === null) {
     // Wait until the authenticated state is initialized
     return null;
@@ -41,7 +39,7 @@ function App() {
 
   useEffect(() => {
     // Log the authentication state when the component mounts
-    console.log('App - Initial Authenticated:', authenticated);
+   
   }, [authenticated]);
 
   return (
@@ -54,6 +52,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
           <Route path="/newcategory" element={<PrivateRoute element={<NewCategory />} />} />
+          <Route path="/deletecategory" element={<PrivateRoute element={<DeleteCategory />} />} /> 
         </Routes>
         <Footer />
       </div>

@@ -21,7 +21,7 @@ function LoginPage({ setAuthenticated } ) {
     }
   function handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/api/login', { email, password })
+    axios.post('https://seashell-app-pjx64.ondigitalocean.app/api/login', { email, password })
       .then(res => {
         console.log(res.data);
         console.log( res.data.success)
@@ -36,9 +36,17 @@ function LoginPage({ setAuthenticated } ) {
       })
       .catch(err => console.error(err));
   }
+  function handleBackToRoot() {
+    navigate('/'); // Update the route to your dashboard route
+  }
   return (
   <div className='login'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
+      <button className="back" onClick={handleBackToRoot}>
+        <i className='bx bxs-left-arrow-alt' ></i>
+        Back to HomePage
+      </button>
       <section>
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
