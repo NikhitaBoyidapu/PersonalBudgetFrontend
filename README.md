@@ -1,6 +1,6 @@
-Github Frontend:- https://github.com/NikhitaBoyidapu/PersonalBudgetProject-Frontend
+Github Frontend:- https://github.com/NikhitaBoyidapu/PersonalBudgetProjectFrontend
 Github Backend:- https://github.com/NikhitaBoyidapu/PersonalBudgetProject-Backend
-Live Server:- 
+
 
 
 
